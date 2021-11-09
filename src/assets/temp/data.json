@@ -1,0 +1,57 @@
+[
+  {
+    "index": "0",
+    "nombre": "PichonUY",
+    "contacto": "pichon@uy.com",
+    "credenciales": {
+      "usuario": "",
+      "contraseña": "",
+      "url": "",
+      "db": ""
+    }
+  },
+  {
+    "index": "1",
+    "nombre": "2D-Seguridad",
+    "contacto": "2dseguridad@hotmail.com",
+    "credenciales": {
+      "usuario": "",
+      "contraseña": "",
+      "url": "",
+      "db": ""
+    }
+  },
+  {
+    "index": "2",
+    "nombre": "MujeresIT",
+    "contacto": "mujeres.it@gmail.com",
+    "credenciales": {
+      "usuario": "",
+      "contraseña": "",
+      "url": "",
+      "db": ""
+    }
+  },
+  {
+    "index": "3",
+    "nombre": "Naturalia",
+    "contacto": "naturalia@gmail.com",
+    "credenciales": {
+      "usuario": "",
+      "contraseña": "",
+      "url": "",
+      "db": ""
+    }
+  },
+  {
+    "index": "4",
+    "nombre": "Universo Propiedades",
+    "contacto": "universo@propiedades.com",
+    "credenciales": {
+      "usuario": "",
+      "contraseña": "",
+      "url": "",
+      "db": ""
+    }
+  }
+]

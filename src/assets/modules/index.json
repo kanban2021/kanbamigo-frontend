@@ -1,0 +1,576 @@
+[
+  {
+    "index": 0,
+    "name": "Configuraciones",
+    "alias": "configuraciones",
+    "category": "Technical",
+    "uRs": ["admin", "config", "base"],
+    "spaces": [
+      {
+        "index": 0,
+        "name": "Config01",
+        "uRs": ["admin", "config", "base"],
+        "views": [
+          {
+            "index": 0,
+            "desc": "short description...",
+            "type": "form",
+            "meta": {}
+          },
+          {
+            "index": 1,
+            "desc": "short description...",
+            "type": "form",
+            "meta": {}
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "name": "Config02",
+        "uRs": ["admin", "config"],
+        "views": [
+          {
+            "index": 0,
+            "desc": "short description...",
+            "type": "form",
+            "meta": {}
+          },
+          {
+            "index": 1,
+            "desc": "short description...",
+            "type": "form",
+            "meta": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "index": 1,
+    "name": "Vista General",
+    "alias": "vista_general",
+    "category": "General",
+    "uRs": ["admin", "vista_general"],
+    "spaces": [
+      {
+        "index": 0,
+        "name": "Tablero General",
+        "uRs": ["admin", "vista_general"],
+        "views": [
+          {
+            "index": 0,
+            "desc": "short description...",
+            "type": "dash",
+            "meta": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "index": 2,
+    "name": "Indices",
+    "alias": "indices",
+    "category": "General",
+    "uRs": ["admin", "indices"],
+    "spaces": [
+      {
+        "index": 0,
+        "name": "Tablero",
+        "uRs": ["admin", "indices"],
+        "views": [
+          {
+            "index": 0,
+            "desc": "short description...",
+            "type": "dash",
+            "meta": {}
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "name": "Indices",
+        "uRs": ["admin", "indices"],
+        "views": [
+          {
+            "index": 0,
+            "desc": "short description...",
+            "type": "list",
+            "meta": {}
+          },
+          {
+            "index": 1,
+            "desc": "short description...",
+            "type": "form",
+            "meta": {}
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "name": "Notificaciones",
+        "uRs": ["admin", "indices"],
+        "views": [
+          {
+            "index": 0,
+            "desc": "short description...",
+            "type": "list",
+            "meta": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "index": 3,
+    "name": "Organizaciones",
+    "alias": "organizaciones",
+    "category": "General",
+    "uRs": ["admin", "organizaciones"],
+    "spaces": [
+      {
+        "index": 0,
+        "name": "Tablero",
+        "uRs": ["admin", "organizaciones"],
+        "views": [
+          {
+            "index": 0,
+            "desc": "short description...",
+            "type": "dash",
+            "meta": {}
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "name": "Empresas",
+        "uRs": ["admin", "organizaciones"],
+        "views": [
+          {
+            "index": 0,
+            "desc": "General List",
+            "type": "list",
+            "meta": {
+              "data": {
+                "QUERY": [
+                  {
+                    "index": 0,
+                    "nombre": "PichonUY",
+                    "contacto": "pichon@uy.com",
+                    "credenciales": {
+                      "usuario": "",
+                      "contraseña": "",
+                      "url": "",
+                      "db": ""
+                    }
+                  },
+                  {
+                    "index": 1,
+                    "nombre": "2D-Seguridad",
+                    "contacto": "2dseguridad@hotmail.com",
+                    "credenciales": {
+                      "usuario": "",
+                      "contraseña": "",
+                      "url": "",
+                      "db": ""
+                    }
+                  },
+                  {
+                    "index": 2,
+                    "nombre": "MujeresIT",
+                    "contacto": "mujeres.it@gmail.com",
+                    "credenciales": {
+                      "usuario": "",
+                      "contraseña": "",
+                      "url": "",
+                      "db": ""
+                    }
+                  },
+                  {
+                    "index": 3,
+                    "nombre": "Naturalia",
+                    "contacto": "naturalia@gmail.com",
+                    "credenciales": {
+                      "usuario": "",
+                      "contraseña": "",
+                      "url": "",
+                      "db": ""
+                    }
+                  },
+                  {
+                    "index": 4,
+                    "nombre": "Universo Propiedades",
+                    "contacto": "universo@propiedades.com",
+                    "credenciales": {
+                      "usuario": "",
+                      "contraseña": "",
+                      "url": "",
+                      "db": ""
+                    }
+                  }
+                ],
+                "columns": [
+                  {
+                    "name": "Nombre",
+                    "dataKey": "nombre",
+                    "align": "left",
+                    "fontWeight": 600
+                  },
+                  {
+                    "name": "Correo Electrónico",
+                    "dataKey": "contacto",
+                    "align": "left",
+                    "fontWeight": "normal"
+                  }
+                ]
+              },
+              "actions": {
+                "CREATE": [true, 1],
+                "READ": [true, 2],
+                "UPDATE": [true, 3],
+                "DELETE": [true]
+              }
+            }
+          },
+          {
+            "index": 1,
+            "desc": "Create Form",
+            "type": "form",
+            "meta": {
+              "data": {
+                "QUERY": [],
+                "newItem": {
+                  "index": -1,
+                  "nombre": "",
+                  "contacto": "",
+                  "credenciales": {
+                    "usuario": "",
+                    "contraseña": "",
+                    "url": "",
+                    "db": ""
+                  }
+                }
+              },
+              "action": "CREATE"
+            }
+          },
+          {
+            "index": 2,
+            "desc": "Read Form",
+            "type": "form",
+            "meta": {
+              "data": {
+                "QUERY": [
+                  {
+                    "index": 0,
+                    "nombre": "PichonUY",
+                    "contacto": "pichon@uy.com",
+                    "credenciales": {
+                      "usuario": "",
+                      "contraseña": "",
+                      "url": "",
+                      "db": ""
+                    }
+                  },
+                  {
+                    "index": 1,
+                    "nombre": "2D-Seguridad",
+                    "contacto": "2dseguridad@hotmail.com",
+                    "credenciales": {
+                      "usuario": "",
+                      "contraseña": "",
+                      "url": "",
+                      "db": ""
+                    }
+                  },
+                  {
+                    "index": 2,
+                    "nombre": "MujeresIT",
+                    "contacto": "mujeres.it@gmail.com",
+                    "credenciales": {
+                      "usuario": "",
+                      "contraseña": "",
+                      "url": "",
+                      "db": ""
+                    }
+                  },
+                  {
+                    "index": 3,
+                    "nombre": "Naturalia",
+                    "contacto": "naturalia@gmail.com",
+                    "credenciales": {
+                      "usuario": "",
+                      "contraseña": "",
+                      "url": "",
+                      "db": ""
+                    }
+                  },
+                  {
+                    "index": 4,
+                    "nombre": "Universo Propiedades",
+                    "contacto": "universo@propiedades.com",
+                    "credenciales": {
+                      "usuario": "",
+                      "contraseña": "",
+                      "url": "",
+                      "db": ""
+                    }
+                  }
+                ]
+              },
+              "action": "READ"
+            }
+          },
+          {
+            "index": 3,
+            "desc": "Update Form",
+            "type": "form",
+            "meta": {
+              "data": {
+                "QUERY": [
+                  {
+                    "index": 0,
+                    "nombre": "PichonUY",
+                    "contacto": "pichon@uy.com",
+                    "credenciales": {
+                      "usuario": "",
+                      "contraseña": "",
+                      "url": "",
+                      "db": ""
+                    }
+                  },
+                  {
+                    "index": 1,
+                    "nombre": "2D-Seguridad",
+                    "contacto": "2dseguridad@hotmail.com",
+                    "credenciales": {
+                      "usuario": "",
+                      "contraseña": "",
+                      "url": "",
+                      "db": ""
+                    }
+                  },
+                  {
+                    "index": 2,
+                    "nombre": "MujeresIT",
+                    "contacto": "mujeres.it@gmail.com",
+                    "credenciales": {
+                      "usuario": "",
+                      "contraseña": "",
+                      "url": "",
+                      "db": ""
+                    }
+                  },
+                  {
+                    "index": 3,
+                    "nombre": "Naturalia",
+                    "contacto": "naturalia@gmail.com",
+                    "credenciales": {
+                      "usuario": "",
+                      "contraseña": "",
+                      "url": "",
+                      "db": ""
+                    }
+                  },
+                  {
+                    "index": 4,
+                    "nombre": "Universo Propiedades",
+                    "contacto": "universo@propiedades.com",
+                    "credenciales": {
+                      "usuario": "",
+                      "contraseña": "",
+                      "url": "",
+                      "db": ""
+                    }
+                  }
+                ]
+              },
+              "action": "UPDATE"
+            }
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "name": "Grupos",
+        "uRs": ["admin", "organizaciones"],
+        "views": [
+          {
+            "index": 0,
+            "desc": "short description...",
+            "type": "list",
+            "meta": {}
+          },
+          {
+            "index": 1,
+            "desc": "short description...",
+            "type": "form",
+            "meta": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "index": 4,
+    "name": "Personas",
+    "alias": "personas",
+    "category": "General",
+    "uRs": ["admin", "personas"],
+    "spaces": [
+      {
+        "index": 0,
+        "name": "Tablero",
+        "uRs": ["admin", "personas"],
+        "views": [
+          {
+            "index": 0,
+            "desc": "short description...",
+            "type": "dash",
+            "meta": {}
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "name": "Personas",
+        "uRs": ["admin", "personas"],
+        "views": [
+          {
+            "index": 0,
+            "desc": "short description...",
+            "type": "list",
+            "meta": {}
+          },
+          {
+            "index": 1,
+            "desc": "short description...",
+            "type": "form",
+            "meta": {}
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "name": "Contactos",
+        "uRs": ["admin", "personas"],
+        "views": [
+          {
+            "index": 0,
+            "desc": "short description...",
+            "type": "list",
+            "meta": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "index": 5,
+    "name": "Plantillas",
+    "alias": "plantillas",
+    "category": "General",
+    "uRs": ["admin", "plantillas"],
+    "spaces": [
+      {
+        "index": 0,
+        "name": "Tablero",
+        "uRs": ["admin", "plantillas"],
+        "views": [
+          {
+            "index": 0,
+            "desc": "short description...",
+            "type": "dash",
+            "meta": {}
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "name": "Plantillas",
+        "uRs": ["admin", "plantillas"],
+        "views": [
+          {
+            "index": 0,
+            "desc": "short description...",
+            "type": "list",
+            "meta": {}
+          },
+          {
+            "index": 1,
+            "desc": "short description...",
+            "type": "form",
+            "meta": {}
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "name": "Notificaciones",
+        "uRs": ["admin", "plantillas"],
+        "views": [
+          {
+            "index": 0,
+            "desc": "short description...",
+            "type": "list",
+            "meta": {}
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "index": 6,
+    "name": "Informes",
+    "alias": "informes",
+    "category": "General",
+    "uRs": ["admin", "informes"],
+    "spaces": [
+      {
+        "index": 0,
+        "name": "Tablero",
+        "uRs": ["admin", "informes"],
+        "views": [
+          {
+            "index": 0,
+            "desc": "short description...",
+            "type": "dash"
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "name": "Informes",
+        "uRs": ["admin", "informes"],
+        "views": [
+          {
+            "index": 0,
+            "desc": "short description...",
+            "type": "list",
+            "meta": {}
+          },
+          {
+            "index": 1,
+            "desc": "short description...",
+            "type": "form",
+            "meta": {}
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "name": "Notificaciones",
+        "uRs": ["admin", "informes"],
+        "views": [
+          {
+            "index": 0,
+            "desc": "short description...",
+            "type": "list",
+            "meta": {}
+          }
+        ]
+      }
+    ]
+  }
+]
