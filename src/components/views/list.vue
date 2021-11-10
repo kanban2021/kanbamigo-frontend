@@ -231,6 +231,6 @@ export default {
   right: 0px;
   bottom: 0px;
   height: 36px;
-  border: 0.5px dashed gray;
+  border: 0px dashed gray;
 }
 </style>

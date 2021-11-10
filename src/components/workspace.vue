@@ -50,7 +50,7 @@ export default {
     });
 
     const changeView = async (params) => {
-      params[1] ? (state.itemId = params[1]) : (state.itemId = -1);
+      params[1] >= 0 ? (state.itemId = params[1]) : (state.itemId = -1);
       await store.commit("selectItem", { a: "view", b: params[0] });
     };
 
