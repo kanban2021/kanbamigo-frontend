@@ -38,10 +38,29 @@
           <input v-model="item.credenciales.db" />
         </div>
       </div>
-      <div v-show="selectedTab === 'HTML'" class="html-area">HTML</div>
+      <div v-show="selectedTab === 'HTML'" class="html-area">
+        <div class="editor-buttons-container">
+          <input
+            type="file"
+            @change="loadDesign"
+            ref="file"
+            style="display: none"
+          />
+          <button class="button" @click="$refs.file.click()">
+            <span>Importar JSON</span>
+          </button>
+          <button class="button" @click="exportHtml('json')">
+            <span>Exportar JSON</span>
+          </button>
+          <button class="button" @click="exportHtml('html')">
+            <span>Exportar HTML</span>
+          </button>
+        </div>
+        <div id="editor-container" class="email-editor" />
+      </div>
     </div>
-    <div class="buttons-container">
-      <button class="action-button" @click="$emit('change-view', [0])">
+    <div class="action-buttons-container">
+      <button class="button" @click="$emit('change-view', [0])">
         <span>Cancelar</span>
       </button>
     </div>
@@ -49,7 +68,8 @@
 </template>
 
 <script>
-import { reactive, toRefs } from "vue";
+import { reactive, toRefs, onMounted } from "vue";
+import { saveAs } from "file-saver";
 
 export default {
   props: {
@@ -87,9 +107,55 @@ export default {
       if (state.selectedTab !== a) state.selectedTab = a;
     };
 
+    const exportHtml = (format) => {
+      // eslint-disable-next-line no-undef
+      unlayer.exportHtml(function (data) {
+        var file;
+
+        switch (format) {
+          case "json":
+            file = JSON.stringify(data.design);
+            break;
+          case "html":
+            file = data.html;
+            break;
+        }
+
+        var blob = new Blob([file], { type: "text/plain;charset=utf-8" });
+        saveAs(blob, `temp.${format}`);
+      });
+    };
+
+    const loadDesign = (e) => {
+      var files = e.target.files || e.dataTransfer.files;
+
+      if (files.length) {
+        var file = files[0];
+        const reader = new FileReader();
+        reader.onload = (res) => {
+          var design = JSON.parse(res.target.result);
+          // eslint-disable-next-line no-undef
+          unlayer.loadDesign(design);
+        };
+        reader.onerror = (err) => console.log(err);
+        reader.readAsText(file);
+      }
+    };
+
+    onMounted(() => {
+      // eslint-disable-next-line no-undef
+      unlayer.init({
+        id: "editor-container",
+        locale: "es-ES",
+        displayMode: "email",
+      });
+    });
+
     return {
       ...toRefs(state),
       selectTab,
+      exportHtml,
+      loadDesign,
     };
   },
 };
@@ -165,7 +231,25 @@ export default {
   background: #ffffff;
 }
 
-.buttons-container {
+.email-editor {
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  top: 42px;
+  bottom: 6px;
+  border-radius: 5px;
+  overflow: scroll;
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.email-editor::-webkit-scrollbar {
+  display: none;
+}
+
+.action-buttons-container {
   position: absolute;
   left: 0px;
   right: 0px;
@@ -175,7 +259,17 @@ export default {
   display: inline-flex;
 }
 
-.action-button {
+.editor-buttons-container {
+  position: absolute;
+  left: 0px;
+  right: 12px;
+  top: 6px;
+  height: 30px;
+  justify-content: right;
+  display: inline-flex;
+}
+
+.button {
   height: 30px;
   margin-left: 12px;
   background: #715091;
@@ -187,11 +281,11 @@ export default {
   cursor: pointer;
 }
 
-.action-button:hover {
+.button:hover {
   background: #5e427a;
 }
 
-.action-button span {
+.button span {
   margin-left: 8px;
   margin-right: 8px;
   font-family: "Montserrat";
