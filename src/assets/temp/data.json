@@ -3,6 +3,11 @@
     "index": "0",
     "nombre": "PichonUY",
     "contacto": "pichon@uy.com",
+    "plantilla": {
+      "asunto": "Asunto de Email",
+      "design": "",
+      "html": ""
+    },
     "credenciales": {
       "usuario": "",
       "contraseña": "",
@@ -14,6 +19,11 @@
     "index": "1",
     "nombre": "2D-Seguridad",
     "contacto": "2dseguridad@hotmail.com",
+    "plantilla": {
+      "asunto": "Asunto de Email",
+      "design": "",
+      "html": ""
+    },
     "credenciales": {
       "usuario": "",
       "contraseña": "",
@@ -25,6 +35,11 @@
     "index": "2",
     "nombre": "MujeresIT",
     "contacto": "mujeres.it@gmail.com",
+    "plantilla": {
+      "asunto": "Asunto de Email",
+      "design": "",
+      "html": ""
+    },
     "credenciales": {
       "usuario": "",
       "contraseña": "",
@@ -36,6 +51,11 @@
     "index": "3",
     "nombre": "Naturalia",
     "contacto": "naturalia@gmail.com",
+    "plantilla": {
+      "asunto": "Asunto de Email",
+      "design": "",
+      "html": ""
+    },
     "credenciales": {
       "usuario": "",
       "contraseña": "",
@@ -47,6 +67,11 @@
     "index": "4",
     "nombre": "Universo Propiedades",
     "contacto": "universo@propiedades.com",
+    "plantilla": {
+      "asunto": "Asunto de Email",
+      "design": "",
+      "html": ""
+    },
     "credenciales": {
       "usuario": "",
       "contraseña": "",

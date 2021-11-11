@@ -11,34 +11,71 @@
       </div>
     </div>
     <div class="form-area">
-      <div v-show="selectedTab === 'General'" class="general-area">
-        <div>
-          <label>NOMBRE: </label>
+      <div v-show="selectedTab === 'General'">
+        <div class="general-head">
           <input v-model="item.nombre" />
         </div>
-        <div>
-          <label>CONTACTO: </label>
-          <input v-model="item.contacto" />
-        </div>
-        <br />
-        <div>
-          <label>USUARIO: </label>
-          <input v-model="item.credenciales.usuario" />
-        </div>
-        <div>
-          <label>CONTRASEÑA: </label>
-          <input v-model="item.credenciales.contraseña" />
-        </div>
-        <div>
-          <label>URL: </label>
-          <input v-model="item.credenciales.url" />
-        </div>
-        <div>
-          <label>NOMBRE DE DB: </label>
-          <input v-model="item.credenciales.db" />
+        <div class="general-body">
+          <table class="general-table" style="left: 0px">
+            <tbody>
+              <tr>
+                <td class="table-label">
+                  <label> Contacto </label>
+                </td>
+                <td style="width: 100%; vertical-align: top">
+                  <input v-model="item.contacto" class="text-field" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="general-table" style="right: 0px">
+            <tbody>
+              <tr>
+                <td class="table-label"><label> Usuario </label></td>
+                <td style="width: 100%">
+                  <input
+                    v-model="item.credenciales.usuario"
+                    class="text-field"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td class="table-label"><label> Contraseña </label></td>
+                <td style="width: 100%">
+                  <input
+                    v-model="item.credenciales.contraseña"
+                    class="text-field"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td class="table-label"><label> URL </label></td>
+                <td style="width: 100%">
+                  <input v-model="item.credenciales.url" class="text-field" />
+                </td>
+              </tr>
+              <tr>
+                <td class="table-label"><label> Nombre de DB </label></td>
+                <td style="width: 100%">
+                  <input v-model="item.credenciales.db" class="text-field" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-      <div v-show="selectedTab === 'HTML'" class="html-area">
+      <div v-show="selectedTab === 'Plantilla'" class="html-area">
+        <input
+          v-model="item.plantilla.asunto"
+          class="text-field"
+          style="
+            position: absolute;
+            left: 6px;
+            padding-left: 12px;
+            top: 14px;
+            width: calc(100% - 520px);
+          "
+        />
         <div class="editor-buttons-container">
           <input
             type="file"
@@ -53,7 +90,7 @@
             <span>Exportar JSON</span>
           </button>
           <button class="button" @click="exportHtml('html')">
-            <span>Exportar HTML</span>
+            <span>Exportar Plantilla</span>
           </button>
         </div>
         <div id="editor-container" class="email-editor" />
@@ -98,7 +135,7 @@ export default {
     };
 
     const state = reactive({
-      tabs: ["General", "HTML"],
+      tabs: ["General", "Plantilla"],
       selectedTab: "General",
       item: loadItem(),
     });
@@ -162,6 +199,19 @@ export default {
 </script>
 
 <style lang="css" scoped>
+input {
+  border: 1px solid transparent;
+  border-bottom: 1px solid #ccc;
+  font-family: "Montserrat";
+  color: #777;
+  font-weight: 400;
+}
+
+input:read-only {
+  border-bottom: 1px solid transparent !important;
+  color: #000;
+}
+
 .tabs-container {
   position: fixed;
   left: 287px;
@@ -231,11 +281,66 @@ export default {
   background: #ffffff;
 }
 
+.general-head {
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  top: 12px;
+  height: 92px;
+}
+
+.general-head input {
+  margin-left: 24px;
+  width: 60%;
+  height: 36px;
+  min-width: 320px;
+  padding: 2px 12px;
+  font-size: 24px;
+}
+
+.general-body {
+  position: absolute;
+  bottom: 6px;
+  top: 120px;
+  left: 6px;
+  right: 6px;
+  display: inline-flex;
+  align-content: top;
+}
+
+.general-table {
+  width: 50%;
+  border-collapse: collapse;
+  display: inline-block;
+}
+
+.table-label {
+  width: 0%;
+  padding: 4px 12px 4px 6px;
+  text-align: right;
+  min-width: 120px;
+  border-right: 1px solid #ddd;
+}
+
+.table-label label {
+  font-weight: bold;
+  font-family: "Montserrat";
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.text-field {
+  width: 85%;
+  margin: 0px 0px 0px 6px;
+  padding: 2px 4px;
+  font-size: 14px;
+}
+
 .email-editor {
   position: absolute;
   left: 6px;
   right: 6px;
-  top: 42px;
+  top: 48px;
   bottom: 6px;
   border-radius: 5px;
   overflow: scroll;
@@ -261,9 +366,8 @@ export default {
 
 .editor-buttons-container {
   position: absolute;
-  left: 0px;
   right: 12px;
-  top: 6px;
+  top: 12px;
   height: 30px;
   justify-content: right;
   display: inline-flex;
