@@ -13,7 +13,10 @@
     <div class="form-area">
       <div v-show="selectedTab === 'General'">
         <div class="general-head">
-          <input v-model="item.nombre" />
+          <input
+            v-model="item.nombre"
+            :readonly="meta.purpose === 'READ' ? true : false"
+          />
         </div>
         <div class="general-body">
           <table class="general-table" style="left: 0px">
@@ -23,7 +26,11 @@
                   <label> Contacto </label>
                 </td>
                 <td style="width: 100%; vertical-align: top">
-                  <input v-model="item.contacto" class="text-field" />
+                  <input
+                    v-model="item.contacto"
+                    class="text-field"
+                    :readonly="meta.purpose === 'READ' ? true : false"
+                  />
                 </td>
               </tr>
             </tbody>
@@ -36,6 +43,7 @@
                   <input
                     v-model="item.credenciales.usuario"
                     class="text-field"
+                    :readonly="meta.purpose === 'READ' ? true : false"
                   />
                 </td>
               </tr>
@@ -45,19 +53,28 @@
                   <input
                     v-model="item.credenciales.contraseña"
                     class="text-field"
+                    :readonly="meta.purpose === 'READ' ? true : false"
                   />
                 </td>
               </tr>
               <tr>
                 <td class="table-label"><label> URL </label></td>
                 <td style="width: 100%">
-                  <input v-model="item.credenciales.url" class="text-field" />
+                  <input
+                    v-model="item.credenciales.url"
+                    class="text-field"
+                    :readonly="meta.purpose === 'READ' ? true : false"
+                  />
                 </td>
               </tr>
               <tr>
                 <td class="table-label"><label> Nombre de DB </label></td>
                 <td style="width: 100%">
-                  <input v-model="item.credenciales.db" class="text-field" />
+                  <input
+                    v-model="item.credenciales.db"
+                    class="text-field"
+                    :readonly="meta.purpose === 'READ' ? true : false"
+                  />
                 </td>
               </tr>
             </tbody>
@@ -75,6 +92,7 @@
             top: 14px;
             width: calc(100% - 520px);
           "
+          :readonly="meta.purpose === 'READ' ? true : false"
         />
         <div class="editor-buttons-container">
           <input
@@ -93,13 +111,77 @@
             <span>Exportar Plantilla</span>
           </button>
         </div>
-        <div id="editor-container" class="email-editor" />
+        <div v-show="meta.purpose === 'READ'" class="email-editor">
+          <iframe
+            :src="item.plantilla.html"
+            frameborder="0"
+            style="min-height: 100%; height: 100%; width: 100%; border: 0px"
+          />
+        </div>
+        <div
+          id="editor-container"
+          class="email-editor"
+          v-show="meta.purpose !== 'READ'"
+        />
       </div>
     </div>
-    <div class="action-buttons-container">
-      <button class="button" @click="$emit('change-view', [0])">
-        <span>Cancelar</span>
-      </button>
+    <div>
+      <div v-if="meta.purpose === 'CREATE'" class="action-buttons-container">
+        <button class="button" @click="evalAction(meta.actions.CREATE[1])">
+          <span>Crear</span>
+        </button>
+        <button class="button" @click="$emit('change-view', [0])">
+          <span>Cancelar</span>
+        </button>
+      </div>
+      <div v-else-if="meta.purpose === 'READ'" class="action-buttons-container">
+        <button
+          class="button"
+          @click="evalAction(meta.actions.UPDATE[1])"
+          v-if="meta.actions.UPDATE[0]"
+        >
+          <span>Editar</span>
+        </button>
+        <button
+          class="button"
+          @click="evalAction(meta.actions.DELETE[1])"
+          v-if="meta.actions.DELETE[0]"
+        >
+          <span>Eliminar</span>
+        </button>
+        <button class="button" @click="$emit('change-view', [0])">
+          <span>Cerrar</span>
+        </button>
+      </div>
+      <div
+        v-else-if="meta.purpose === 'UPDATE'"
+        class="action-buttons-container"
+      >
+        <button
+          class="button"
+          @click="evalAction(meta.actions.UPDATE[2])"
+          v-if="meta.actions.UPDATE[0]"
+        >
+          <span>Guardar Cambios</span>
+        </button>
+        <button
+          class="button"
+          @click="evalAction(meta.actions.UPDATE[1])"
+          v-if="meta.actions.UPDATE[0]"
+        >
+          <span>Descartar Cambios</span>
+        </button>
+        <button
+          class="button"
+          @click="evalAction(meta.actions.DELETE[1])"
+          v-if="meta.actions.DELETE[0]"
+        >
+          <span>Eliminar</span>
+        </button>
+        <button class="button" @click="$emit('change-view', [0])">
+          <span>Cerrar</span>
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -119,11 +201,11 @@ export default {
       required: false,
     },
   },
-  setup(props) {
+  setup(props, { emit }) {
     const loadItem = () => {
       let item = {};
 
-      if (props.meta.action !== "CREATE") {
+      if (props.meta.purpose !== "CREATE") {
         item = props.meta.data.QUERY.find(
           (item) => item.index === props.itemId
         );
@@ -159,7 +241,8 @@ export default {
         }
 
         var blob = new Blob([file], { type: "text/plain;charset=utf-8" });
-        saveAs(blob, `temp.${format}`);
+        var name = state.item.plantilla.asunto.replaceAll(" ", "_");
+        saveAs(blob, `${name.toLowerCase()}.${format}`);
       });
     };
 
@@ -179,6 +262,12 @@ export default {
       }
     };
 
+    const evalAction = (action) => {
+      var a = new Function(action);
+      var result = a();
+      emit("change-view", [result, state.item.index]);
+    };
+
     onMounted(() => {
       // eslint-disable-next-line no-undef
       unlayer.init({
@@ -193,6 +282,7 @@ export default {
       selectTab,
       exportHtml,
       loadDesign,
+      evalAction,
     };
   },
 };

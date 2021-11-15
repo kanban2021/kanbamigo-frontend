@@ -254,7 +254,7 @@
                 "CREATE": [true, 1],
                 "READ": [true, 2],
                 "UPDATE": [true, 3],
-                "DELETE": [true]
+                "DELETE": [true, "console.log('DELETE ', item);"]
               }
             }
           },
@@ -282,7 +282,10 @@
                   }
                 }
               },
-              "action": "CREATE"
+              "purpose": "CREATE",
+              "actions": {
+                "CREATE": [true, "return 2"]
+              }
             }
           },
           {
@@ -374,7 +377,11 @@
                   }
                 ]
               },
-              "action": "READ"
+              "purpose": "READ",
+              "actions": {
+                "UPDATE": [true, "return 3"],
+                "DELETE": [true, "console.log('DELETE ', state.item); "]
+              }
             }
           },
           {
@@ -466,7 +473,11 @@
                   }
                 ]
               },
-              "action": "UPDATE"
+              "purpose": "UPDATE",
+              "actions": {
+                "UPDATE": [true, "return 2", "return 2"],
+                "DELETE": [true, "console.log('DELETE ', state.item); return 0"]
+              }
             }
           }
         ]

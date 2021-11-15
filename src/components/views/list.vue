@@ -2,9 +2,9 @@
   <div>
     <div id="buttons-container">
       <button
-        v-if="tableProps.actions.CREATE[0]"
+        v-if="meta.actions.CREATE[0]"
         class="create-button"
-        @click="$emit('change-view', [tableProps.actions.CREATE[1]])"
+        @click="$emit('change-view', [meta.actions.CREATE[1]])"
       >
         <img src="@/assets/vectors/plus_sign.svg" alt="+" />
         <span>Crear</span>
@@ -48,16 +48,13 @@
               <span
                 :style="{
                   cursor:
-                    column.fontWeight === 600 && tableProps.actions.READ[0]
+                    column.fontWeight === 600 && meta.actions.READ[0]
                       ? 'pointer'
                       : '',
                 }"
                 @click="
-                  column.fontWeight === 600 && tableProps.actions.READ[0]
-                    ? $emit('change-view', [
-                        tableProps.actions.READ[1],
-                        item.index,
-                      ])
+                  column.fontWeight === 600 && meta.actions.READ[0]
+                    ? $emit('change-view', [meta.actions.READ[1], item.index])
                     : () => {
                         return;
                       }
@@ -67,22 +64,20 @@
             </td>
             <td style="width: 50px; text-align: right">
               <img
-                v-if="tableProps.actions.UPDATE[0]"
+                v-if="meta.actions.UPDATE[0]"
                 @click="
-                  $emit('change-view', [
-                    tableProps.actions.UPDATE[1],
-                    item.index,
-                  ])
+                  $emit('change-view', [meta.actions.UPDATE[1], item.index])
                 "
                 src="@/assets/vectors/edit_pencil.svg"
                 alt="edit"
                 class="edit-icon"
               />
               <img
-                v-if="tableProps.actions.DELETE[0]"
+                v-if="meta.actions.DELETE[0]"
                 src="@/assets/vectors/trash_can.svg"
                 alt="delete"
                 class="delete-icon"
+                @click="deleteItem(meta.actions.DELETE[1], item)"
               />
             </td>
           </tr>
@@ -109,7 +104,6 @@ export default {
       tableProps: {
         columns: [props.meta.data.columns[0], props.meta.data.columns[1]],
         rowCounter: 0,
-        actions: props.meta.actions,
       },
     });
 
@@ -126,9 +120,15 @@ export default {
       return state.tableProps.rowCounter % 2 === 0 ? "#f7f8fc" : "#ffffff";
     };
 
+    const deleteItem = (action, item) => {
+      var a = new Function("item", action);
+      a(item);
+    };
+
     return {
       ...toRefs(state),
       tableData,
+      deleteItem,
       rowBg,
     };
   },
